@@ -1,42 +1,65 @@
 
 # Rapport
 
-**Skriv din rapport här!**
+I `activity_main.xml` implementerades tre olika widgets utöver den textview som redan fanns. Dessa widgets är `EditText`, en `Imageview` och `Button`. En `onClick` metod används med knappen för att gömma eller visa den `ImageView` som nämnts när användaren trycker på knappen. 
 
-_Du kan ta bort all text som finns sedan tidigare_.
+För att skapa en strukturerad layout så används `ConstraintLayout` som bestämmer hur dessa widgets ska placeras i applikationens användargränssnitt. Den ordning som widgets ska visas i applikationen bestäms genom constraints. Ett exempel för detta visas i kodstycket nedan. I kodstycket så används `layout_constraint` nyckelordet för att bestämma hur just denna widget ska ligga relativt till skärmen och andra widgets.
 
-## Följande grundsyn gäller dugga-svar:
-
-- Ett kortfattat svar är att föredra. Svar som är längre än en sida text (skärmdumpar och programkod exkluderat) är onödigt långt.
-- Svaret skall ha minst en snutt programkod.
-- Svaret skall inkludera en kort övergripande förklarande text som redogör för vad respektive snutt programkod gör eller som svarar på annan teorifråga.
-- Svaret skall ha minst en skärmdump. Skärmdumpar skall illustrera exekvering av relevant programkod. Eventuell text i skärmdumpar måste vara läsbar.
-- I de fall detta efterfrågas, dela upp delar av ditt svar i för- och nackdelar. Dina för- respektive nackdelar skall vara i form av punktlistor med kortare stycken (3-4 meningar).
-
-Programkod ska se ut som exemplet nedan. Koden måste vara korrekt indenterad då den blir lättare att läsa vilket gör det lättare att hitta syntaktiska fel.
-
-```
-function errorCallback(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            // Geolocation API stöds inte, gör något
-            break;
-        case error.POSITION_UNAVAILABLE:
-            // Misslyckat positionsanrop, gör något
-            break;
-        case error.UNKNOWN_ERROR:
-            // Okänt fel, gör något
-            break;
-    }
-}
+```xml
+    <EditText
+        android:id="@+id/editTextView"
+        android:layout_width="0dp"
+        android:minHeight="48dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:hint="@string/editview_text"
+        android:lineSpacingExtra="4sp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerView" />
 ```
 
-Bilder läggs i samma mapp som markdown-filen.
+Dessa constraints bestämdes genom att redigera `activity_main.xml` filen, och positioneringen av widgets ändrades genom att nyttja design-läget.
+För att bestämma storleken för en widget så används framförallt `wrap_content` och `0dp` för höjden och bredden. Det senare används för att låta en widget ta upp all tillgänglig yta på antingen höjden eller bredden. Detta visas i exemplet nedan. I exemplet visas även `margin` som används för att varje widget i applikationen ska tillåtas lite utrymme mellan skärmens kant eller andra widgets.
 
-![](android.png)
+```xml
+    <Button
+        android:id="@+id/buttonView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"        
+        .
+        .
+        .
+    />
+```
 
-Läs gärna:
+Imageview:en visar en bild och för att bestämma storleken för denna så används absoluta värden, eftersom att bilden inte behöver vara särskilt stor (se kodstycket nedan).
 
-- Boulos, M.N.K., Warren, J., Gong, J. & Yue, P. (2010) Web GIS in practice VIII: HTML5 and the canvas element for interactive online mapping. International journal of health geographics 9, 14. Shin, Y. &
-- Wunsche, B.C. (2013) A smartphone-based golf simulation exercise game for supporting arthritis patients. 2013 28th International Conference of Image and Vision Computing New Zealand (IVCNZ), IEEE, pp. 459–464.
-- Wohlin, C., Runeson, P., Höst, M., Ohlsson, M.C., Regnell, B., Wesslén, A. (2012) Experimentation in Software Engineering, Berlin, Heidelberg: Springer Berlin Heidelberg.
+```xml
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="232dp"
+        android:layout_height="165dp"
+        .
+        .
+        .
+    />
+```
+
+
+Nedan visas en bild på applikationen och den layout som beskrivits.
+
+![widgets UI](widgets.png)
+
